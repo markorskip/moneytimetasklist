@@ -4,16 +4,14 @@ import com.tasklist.model.TaskList;
 import com.tasklist.model.User;
 import com.tasklist.repository.TaskListRepository;
 import com.tasklist.repository.UserRepository;
+import javafx.concurrent.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +43,20 @@ public class NewTaskController {
             return ResponseEntity.ok("Tasklist created : " + taskList.toString());
         }
 
+        return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping(path = "/users/{user}/tasklists/new", consumes = "application/json")
+    public @ResponseBody ResponseEntity<?> postNewTaskList(@PathVariable("user") String user, @RequestBody TaskList post_taskList) {  //@RequestBody TaskList taskList @RequestBody binds json to a java object automatically
+        System.out.println("Attempting to create a new tasklist for user: " + user);
+        User userToUpdate = userRepository.findByUsername(user);
+        if (userToUpdate!= null) {
+            post_taskList.setJsonTaskList(newTaskStringJson);
+            userToUpdate.getTasklists().add(post_taskList);
+            userToUpdate = userRepository.save(userToUpdate);
+            System.out.println(userToUpdate);
+            return ResponseEntity.ok("Tasklist created (ID won't display here) : " + post_taskList.toString());
+        }
         return ResponseEntity.notFound().build();
     }
 

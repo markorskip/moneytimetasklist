@@ -28,6 +28,9 @@ public class TaskList {
     @Column
     private String taskListName;
 
+    @Column
+    private String taskListDescription;
+
     public TaskList(String jsonTaskList) {
         this.jsonTaskList = jsonTaskList;
         this.taskListName = "New Tasklist";

@@ -30,14 +30,17 @@
 
 
     <div id="main">
-    <task v-for="task,index in tasks"
-          :task="task"
-          :key="index"
-          :index="index"
-          v-on:add-child="addChild($event)"
-          v-on:delete-task="deleteTask($event)"
-          v-on:toggle-edit="toggleEdit($event)"
-    ></task>
+
+     <b-list-group>
+        <task v-for="task,index in tasks"
+              :task="task"
+              :key="index"
+              :index="index"
+              v-on:add-child="addChild($event)"
+              v-on:delete-task="deleteTask($event)"
+              v-on:toggle-edit="toggleEdit($event)"
+        ></task>
+     </b-list-group>
 
         <button @click="addRoot()">Add a Root Task</button>
         <button @click="refresh()">Refresh Data</button>
@@ -53,10 +56,11 @@
     <div class="task" :style="indent">
 
         <!-- Normal display -->
-        <div v-if="!task.edit">
+        <b-list-group-item v-if="!task.edit">
 
             <i class="fas fa-edit"  v-on:click="$emit('toggle-edit', index)"></i>
             <i class="fas fa-plus"  v-on:click="$emit('add-child', [task, index])"></i>
+
             <i v-if="!task.children" class="fas fa-trash" v-on:click="$emit('delete-task', [task, index])"></i>
             <i class="fas fa-ban" title="Disable feature not available yet"></i>
             <b :id="'task'+index" :title=task.label >{{ task.label }}</b>
@@ -78,10 +82,10 @@
             Total Time: {{ task.time }} hours
             </span>
 
-        </div>
+        </b-list-group-item>
 
         <!-- Edit mode -->
-        <div v-if="task.edit">
+        <b-list-group-item v-if="task.edit">
 
             <i class="fas fa-save" v-on:click="$emit('toggle-edit',index)"></i>
             <i v-if="!task.children" class="fas fa-trash" v-on:click="$emit('delete-task', [task, index])"></i>
@@ -89,7 +93,7 @@
             Cost Estimate: <input v-model="task.estimatedCost">
             Time Estimate: <input v-model="task.estimatedTime">
             Complete? <input type="checkbox" v-model="task.complete">
-        </div>
+        </b-list-group-item>
     </div>
 </template>
 </body>

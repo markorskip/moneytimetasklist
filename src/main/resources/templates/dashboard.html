@@ -10,20 +10,15 @@
 
     <b-card v-for="tasklist in tasklists" align="center">
         <b-card-title @click="toggleEdit()">
-
-            <div v-if="edit">
-                Tasklist Name: <input v-model="tasklist.taskListName">
-            </div>
-            <div v-else>
             {{ tasklist.taskListName }}
-            </div>
-
-
         </b-card-title>
 
         <b-card-text>
             <br/>
             Here you will find overview details of the tasklist like total time and total cost, time so far and cost so far.
+
+            {{ tasklist.taskListDescription }}
+
         </b-card-text>
         <b-card-text>
             Users:<br/>
@@ -35,17 +30,29 @@
         </b-card-text>
         <span slot="footer">
             <b-button @click="deleteTaskList(tasklist)">Delete this list</b-button>
-            <b-button>Invite users</b-button>
-            <b-button v-b-modal="modal">Details</b-button>
-            <b-modal id="modal">Modal: {{ tasklist }}</b-modal>
+            <!--<b-button>Invite users</b-button>-->
+            <!--<b-button>Details</b-button>-->
         </span>
 
     </b-card>
 </div>
+    <div>
+        <b-button v-b-modal.modal2>Create a new TaskList</b-button>
+        <b-modal
+        id="modal2"
+        ref="modal"
+        title="Create a new tasklist:"
+        @ok="handleOk"
+        @shown="clear"
+        >
+            <form @submit.stop.prevent="handleSubmit">
+                <b-form-input type="text" placeholder="Enter tasklist name" v-model="newTaskListName" />
+                <b-form-input type="text" placeholder="Enter tasklist description" v-model="newTaskListDescription" />
+            </form>
+        </b-modal>
+    </div>
 
-    <b-button @click="newTaskList()">Create a new TaskList</b-button>
-
-</div>
+</div> <!-- End of root app -->
 
 </body>
 
