@@ -4,7 +4,6 @@ import com.tasklist.model.TaskList;
 import com.tasklist.model.User;
 import com.tasklist.repository.TaskListRepository;
 import com.tasklist.repository.UserRepository;
-import javafx.concurrent.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.hateoas.Resources;

@@ -1,6 +1,5 @@
 package com.tasklist.model;
 
-import com.tasklist.model.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.Data;
 
