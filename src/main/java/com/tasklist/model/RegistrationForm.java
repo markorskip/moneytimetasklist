@@ -1,7 +1,7 @@
 package com.tasklist.model;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.Data;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Data
 public class RegistrationForm {

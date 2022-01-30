@@ -1,4 +1,4 @@
-"# tasklist" 
+## tasklist
 
 Postgres:
 open cmd prompt
@@ -42,16 +42,16 @@ and
 curl -v -X POST -H "Content-Type: text/uri-list" \
      -d "URI of new task created ie http://localhost:8080/api/taskLists/4
      http://localhost:8080/api/users/NAMEOFUSERTO_ASSOCIATE_WITH/tasklists/
-     
+
      POST associate a new task in addition to others
      PUT removes all other associates and adds the new one
-     
+
  https://stackoverflow.com/questions/26259474/how-to-add-elements-in-a-many-to-many-relationship-via-springs-repositoryrestr
  https://stackoverflow.com/questions/17981252/how-to-update-reference-object-in-spring-data-rest?rq=1
- 
- 
+
+
  Find orphaned tasks:
  select * from task_list t left join users_task_list u on u.tasklist_id = t.id where u.tasklist_id IS NULL;
- 
+
  Delete orphaned tasks:
  delete from task_list t where t.id NOT IN (SELECT u.tasklist_id from users_task_list u);

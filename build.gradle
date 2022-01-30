@@ -31,11 +31,11 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    
+
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    
+
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-    
+
     //runtimeOnly 'com.h2database:h2'
     compileOnly 'org.projectlombok:lombok'
 
@@ -44,13 +44,13 @@ dependencies {
 
     // Enable rest repositories
     compile("org.springframework.boot:spring-boot-starter-data-rest")
-    
+
     compile("org.springframework.boot:spring-boot-starter-security")
     //compile("org.springframework.boot:spring-boot-starter-security")
 
     // https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
     testCompile group: 'org.springframework.security', name: 'spring-security-test', version: '5.1.4.RELEASE'
-    
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     //testImplementation 'org.springframework.security:spring-security-test'
 
